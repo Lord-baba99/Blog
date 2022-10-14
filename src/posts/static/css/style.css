@@ -2,5 +2,22 @@
 
 body{
     font-family: "century gothic";
-    padding: 5rem;
+}
+
+nav{
+    margin: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#blog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+#blog article{
+    width: 50%;
+    margin-top: 2rem;
 }
