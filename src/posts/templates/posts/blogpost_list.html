@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Accueil du blog</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Le blog d'Alkaba</h1>
+    {% for post in posts %}
+        <article>
+            <h2>{{ post.title }}</h2>
+            {% if request.user.is_authenticated %}
+            <div>
+                <a href="{% url 'posts:edit' slug=post.slug %}">Editer</a>
+                <a href="{% url 'posts:delete' slug=post.slug %}">Supprimer</a>
+            </div>
+            {% endif %}
+            <h5>Publi&eacute; par <i>{{ post.author_or_default }}</i> le {{ post.date_or_no|date:'j F Y' }}</h5>
+            <p>{{ post.content | safe | truncatewords:50 }}</p>
+            <form action="{% url 'posts:post' slug=post.slug %}">
+                <button>
+                    Lire l'article
+                </button>
+            </form>
+        </article>
+{% endfor %}
+
+{% endblock %}
